@@ -95,6 +95,19 @@
  *   TPCH              -- make will create TPCH (set in makefile)
  */
 
+/* ============================================================================
+ * EMBEDDED LIBRARY CONFIGURATION (for C++ embedding)
+ * Define defaults if not set by build system
+ * ============================================================================
+ */
+#ifndef LINUX
+#define LINUX 1
+#endif
+
+#ifndef TPCH
+#define TPCH 1
+#endif
+
 #ifdef DOS
 #define PATH_SEP	'\\'
 #else

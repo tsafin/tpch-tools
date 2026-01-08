@@ -35,14 +35,13 @@
  * provided by Frank Stephens of Unisys
  */
 
-/* function prototypes */
-DSS_HUGE            NextRand(DSS_HUGE);
-DSS_HUGE            UnifInt(DSS_HUGE, DSS_HUGE, long);
+/* function prototypes (declared in dss.h) */
 
-static long     nA = 16807;     /* the multiplier */
-static long     nM = 2147483647;/* the modulus == 2^31 - 1 */
-static long     nQ = 127773;    /* the quotient nM / nA */
-static long     nR = 2836;      /* the remainder nM % nA */
+/* Legacy 32-bit RNG constants (not used - 64-bit RNG preferred) */
+static long     nA __attribute__((unused)) = 16807;     /* the multiplier */
+static long     nM __attribute__((unused)) = 2147483647;/* the modulus == 2^31 - 1 */
+static long     nQ __attribute__((unused)) = 127773;    /* the quotient nM / nA */
+static long     nR __attribute__((unused)) = 2836;      /* the remainder nM % nA */
 
 double   dM = 2147483647.0;
 

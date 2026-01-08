@@ -77,11 +77,11 @@
 #endif
 #endif
 
-DSS_HUGE NextRand(DSS_HUGE seed);
+/* NextRand declared in dss.h */
 void	permute(long *set, int cnt, long stream);
 void	permute_dist(distribution *d, long stream);
 long seed;
-char *eol[2] = {" ", "},"};
+const char *eol[2] = {" ", "},"};
 extern seed_t Seed[];
 #ifdef TEST
 tdef tdefs = { NULL };
@@ -96,7 +96,7 @@ void	permute(long *a, int c, long s)
 {
     int i;
     static DSS_HUGE source;
-    static long *set, temp;
+    static long temp;
     
 	if (a != (long *)NULL)
 	{
@@ -114,7 +114,6 @@ void	permute(long *a, int c, long s)
 
 void	permute_dist(distribution *d, long stream)
 {
-	static distribution *dist = NULL;
 	int i;
 	
 	if (d != NULL)

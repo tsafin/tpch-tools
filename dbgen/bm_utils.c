@@ -56,12 +56,14 @@
  * set_state() -- initialize the RNG
  */
 
+#define _POSIX_C_SOURCE 200809L
 #include "config.h"
 #include "dss.h"
 #include <stdio.h>
 #include <time.h>
 #include <errno.h>
 #include <string.h>
+#include <stdlib.h>
 #ifdef HP
 #include <strings.h>
 #endif            /* HP */
@@ -221,7 +223,7 @@ pick_str(distribution *s, int c, char *target)
 
     if (!s || !s->list || s->count <= 0) {
         fprintf(stderr, "ERROR: pick_str called with invalid distribution: s=%p, list=%p, count=%d\n",
-                s, s ? s->list : NULL, s ? s->count : -1);
+                (void*)s, (void*)(s ? s->list : NULL), s ? s->count : -1);
         fflush(stderr);
         if (target) strcpy(target, "");
         return 0;
@@ -403,7 +405,7 @@ tbl_open(int tbl, char *mode)
 	} else {
 		/* note this code asumes we are writing but tests if mode == r -jrg */
 		if (S_ISREG(fstats.st_mode) && !force && *mode != 'r' ) {
-			sprintf(prompt, "Do you want to overwrite %s ?", fullpath);
+			snprintf(prompt, sizeof(prompt), "Do you want to overwrite %s ?", fullpath);
 			if (!yes_no(prompt))
 				exit(0);
 			f = fopen(fullpath, mode);
@@ -577,7 +579,7 @@ DSS_HUGE
 set_state(int table, long sf, long procs, long step, DSS_HUGE *extra_rows)
 {
     int i;
-	DSS_HUGE rowcount, remainder, result;
+	DSS_HUGE rowcount, result;
 	
     if (sf == 0 || step == 0)
         return(0);

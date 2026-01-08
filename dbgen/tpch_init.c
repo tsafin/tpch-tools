@@ -9,9 +9,8 @@
 #include "dsstypes.h"
 #include <string.h>
 
-/* External declarations from dss.h */
+/* External declarations from dss.h (included above) */
 extern seed_t Seed[];
-extern long verbose;
 
 /*
  * load_dists() - Load all required distributions from dists.dss

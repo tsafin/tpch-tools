@@ -154,9 +154,9 @@ dump_seeds(int tbl)
 	for (i=0; i <= MAX_STREAM; i++)
 		if (Seed[i].table == tbl)
 #ifdef RNG_TEST
-			printf("%d(%ld):\t%ld\n", i, Seed[i].nCalls, Seed[i].value);
+			printf("%d(%ld):\t%lld\n", i, Seed[i].nCalls, Seed[i].value);
 #else
-			printf("%d:\t%ld\n", i, Seed[i].value);
+			printf("%d:\t%lld\n", i, Seed[i].value);
 #endif
 	return;
 }
@@ -205,7 +205,7 @@ UnifInt(DSS_HUGE nLow, DSS_HUGE nHigh, long nStream)
 {
     double          dRange;
     DSS_HUGE            nTemp,
-		nRange;
+		nRange __attribute__((unused));
     int32_t	nLow32 = (int32_t)nLow,
 		nHigh32 = (int32_t)nHigh;
 	

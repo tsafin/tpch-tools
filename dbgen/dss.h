@@ -111,7 +111,7 @@
 
 #define INTERNAL_ERROR(p)  {fprintf(stderr,"%s", p);abort();}
 #define LN_CNT  4
-static char lnoise[4] = {'|', '/', '-', '\\' };
+static char lnoise[4] __attribute__((unused)) = {'|', '/', '-', '\\' };
 #define LIFENOISE(n, var)	\
 	if (verbose > 0) fprintf(stderr, "%c\b", lnoise[(var%LN_CNT)])
 
@@ -479,10 +479,10 @@ int dbg_print(int dt, FILE *tgt, void *data, int len, int eol);
 #define  PR_END(fp)    fprintf(fp, "\n")   /* finish the record here */
 #ifdef MDY_DATE
 #define  PR_DATE(tgt, yr, mn, dy)	\
-   sprintf(tgt, "%02d-%02d-19%02d", mn, dy, yr)
+   sprintf(tgt, "%02ld-%02ld-19%02ld", mn, dy, yr)
 #else
 #define  PR_DATE(tgt, yr, mn, dy)	\
-sprintf(tgt, "19%02d-%02d-%02d", yr, mn, dy)
+sprintf(tgt, "19%02ld-%02ld-%02ld", yr, mn, dy)
 #endif /* DATE_FORMAT */
 
 /*

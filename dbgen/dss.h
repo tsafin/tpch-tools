@@ -204,15 +204,16 @@ int     tx_rnd(long min, long max, long column, char *tgt);
 long	julian(long date);
 long	unjulian(long date);
 FILE	*tbl_open(int tbl, char *mode);
-long	dssncasecmp(char *s1, char *s2, int n);
-long	dsscasecmp(char *s1, char *s2);
-int	pick_str(distribution * s, int c, char *target);
+long	dssncasecmp(const char *s1, const char *s2, int n);
+long	dsscasecmp(const char *s1, const char *s2);
+int	    pick_str(distribution * s, int c, char *target);
 void	agg_str(distribution *set, long count, long col, char *dest);
 void	read_dist(char *path, char *name, distribution * target);
 void	embed_str(distribution *d, int min, int max, int stream, char *dest);
 #ifndef STDLIB_HAS_GETOPT
-int	getopt(int arg_cnt, char **arg_vect, char *oprions);
+int	    getopt(int arg_cnt, char **arg_vect, char *oprions);
 #endif /* STDLIB_HAS_GETOPT */
+char ** mk_ascdate(void);
 DSS_HUGE	set_state(int t, long scale, long procs, long step, DSS_HUGE *e);
 
 /* rnd.c */

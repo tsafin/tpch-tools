@@ -219,6 +219,14 @@ pick_str(distribution *s, int c, char *target)
     long      i = 0;
     DSS_HUGE      j;
 
+    if (!s || !s->list || s->count <= 0) {
+        fprintf(stderr, "ERROR: pick_str called with invalid distribution: s=%p, list=%p, count=%d\n",
+                s, s ? s->list : NULL, s ? s->count : -1);
+        fflush(stderr);
+        if (target) strcpy(target, "");
+        return 0;
+    }
+
     RANDOM(j, 1, s->list[s->count - 1].weight, c);
     while (s->list[i].weight < j)
         i++;
@@ -440,18 +448,18 @@ agg_str(distribution *set, long count, long col, char *dest)
 
 
 long
-dssncasecmp(char *s1, char *s2, int n)
+dssncasecmp(const char *s1, const char *s2, int n)
 {
     for (; n > 0; ++s1, ++s2, --n)
         if (tolower(*s1) != tolower(*s2))
             return ((tolower(*s1) < tolower(*s2)) ? -1 : 1);
         else if (*s1 == '\0')
             return (0);
-        return (0);
+    return (0);
 }
 
 long
-dsscasecmp(char *s1, char *s2)
+dsscasecmp(const char *s1, const char *s2)
 {
     for (; tolower(*s1) == tolower(*s2); ++s1, ++s2)
         if (*s1 == '\0')
@@ -523,12 +531,29 @@ getopt(int ac, char **av, char *opt)
 }
 #endif /* STDLIB_HAS_GETOPT */
 
+/*
+ * mk_ascdate() - Generate ASCII date strings
+ * This function allocates and populates an array of 2557 date strings (one for each
+ * possible date in the TPC-H range).
+ *
+ * CRITICAL FIX FOR PHASE 9.1:
+ * Added static caching to prevent multiple allocations. In embedded mode, multiple
+ * functions (mk_order, mk_lineitem, etc.) independently call this function through
+ * their own static variables. Without this cache, each caller would get a different
+ * allocation, causing pointer corruption and segfaults.
+ *
+ * Solution: Use a function-level static variable to cache the result on first call,
+ * ensuring all callers get the same pre-allocated pointer.
+ */
 char **
 mk_ascdate(void)
 {
-    char **m;
+    static char **m = NULL;  /* Cache the result in a static variable */
     dss_time_t t;
     DSS_HUGE i;
+
+    if (m != NULL)
+        return m;  /* Return cached result if already allocated */
 
     m = (char**) malloc((size_t)(TOTDATE * sizeof (char *)));
     MALLOC_CHECK(m);

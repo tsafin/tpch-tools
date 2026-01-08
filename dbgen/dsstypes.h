@@ -151,7 +151,7 @@ int ld_supp(supplier_t * supp, int mode);
 typedef struct
 {
     DSS_HUGE            timekey;
-    char            alpha[DATE_LEN];
+    char            alpha[DATE_LEN * 2];
     long            year;
     long            month;
     long            week;
@@ -162,7 +162,7 @@ typedef struct
 long mk_time(DSS_HUGE h, dss_time_t * t);
 
 /*
- * this assumes that N_CMNT_LEN >= R_CMNT_LEN 
+ * this assumes that N_CMNT_LEN >= R_CMNT_LEN
  */
 typedef struct
 {

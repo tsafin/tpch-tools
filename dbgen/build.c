@@ -159,7 +159,6 @@ mk_order(DSS_HUGE index, order_t * o, long upd_num)
 	DSS_HUGE        supp_num;
 	static char   **asc_date = NULL;
 	char            tmp_str[2];
-	char          **mk_ascdate(void);
 	int             delta = 1;
 	static int      bInit = 0;
 	static char     szFormat[100];
@@ -358,7 +357,7 @@ mk_supp(DSS_HUGE index, supplier_t * s)
 
 struct
 {
-	char           *mdes;
+	const char     *mdes;
 	long            days;
 	long            dcnt;
 }               months[] =

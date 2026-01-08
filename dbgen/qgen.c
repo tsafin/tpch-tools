@@ -59,7 +59,6 @@ void qsub(char *qtag, int flags);
 
 extern char *optarg;
 extern int optind;
-char **mk_ascdate(void);
 extern seed_t Seed[];
 
 char **asc_date;

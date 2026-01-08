@@ -101,46 +101,50 @@ dss_random(DSS_HUGE *tgt, DSS_HUGE lower, DSS_HUGE upper, long stream)
 	return;
 }
 
+#ifndef EMBEDDED_DBGEN
 void
 row_start(int t)	\
 {
 	int i;
-	for (i=0; i <= MAX_STREAM; i++) 
-		Seed[i].usage = 0 ; 
-	
+	for (i=0; i <= MAX_STREAM; i++)
+		Seed[i].usage = 0 ;
+
 	return;
 }
+#endif /* EMBEDDED_DBGEN */
 
+#ifndef EMBEDDED_DBGEN
 void
 row_stop(int t)	\
-	{ 
+	{
 	int i;
-	
+
 	/* need to allow for handling the master and detail together */
 	if (t == ORDER_LINE)
 		t = ORDER;
 	if (t == PART_PSUPP)
 		t = PART;
-	
+
 	for (i=0; i <= MAX_STREAM; i++)
 		if ((Seed[i].table == t) || (Seed[i].table == tdefs[t].child))
-			{ 
+			{
 			if (set_seeds && (Seed[i].usage > Seed[i].boundary))
 				{
-				fprintf(stderr, "\nSEED CHANGE: seed[%d].usage = %d\n", 
-					i, Seed[i].usage); 
+				fprintf(stderr, "\nSEED CHANGE: seed[%d].usage = %d\n",
+					i, Seed[i].usage);
 				Seed[i].boundary = Seed[i].usage;
-				} 
-			else 
+				}
+			else
 				{
 				NthElement((Seed[i].boundary - Seed[i].usage), &Seed[i].value);
 #ifdef RNG_TEST
 				Seed[i].nCalls += Seed[i].boundary - Seed[i].usage;
 #endif
 				}
-			} 
+			}
 		return;
 	}
+#endif /* EMBEDDED_DBGEN */
 
 void
 dump_seeds(int tbl)

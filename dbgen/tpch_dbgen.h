@@ -92,7 +92,8 @@ extern "C" {
 #define DBGEN_NATION    8
 #define DBGEN_REGION    9
 
-/* Also provide unprefixed versions for C code compatibility */
+/* Provide unprefixed versions for C code compatibility (C only to avoid conflicts) */
+#ifndef __cplusplus
 #define PART      DBGEN_PART
 #define PSUPP     DBGEN_PSUPP
 #define SUPP      DBGEN_SUPP
@@ -101,6 +102,7 @@ extern "C" {
 #define LINE      DBGEN_LINE
 #define NATION    DBGEN_NATION
 #define REGION    DBGEN_REGION
+#endif
 
 /* ============================================================================
  * TPC-H Data Structures (from dbgen/dsstypes.h)
@@ -216,9 +218,14 @@ int mk_region(DSS_HUGE i, code_t *c);
 /* Initialization - must be called before any generation */
 void dbgen_reset_seeds(void);
 DSS_HUGE set_state(int t, long scale, long procs, long step, DSS_HUGE *e);
+char** mk_ascdate(void);
 
 /* Distribution loading - required before generation */
 void load_dists(void);
+
+/* Row callbacks - called before/after generating rows of a table */
+void row_start(int t);
+void row_stop(int t);
 
 #ifdef __cplusplus
 }  /* extern "C" */

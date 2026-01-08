@@ -194,34 +194,30 @@ typedef struct SEED_T {
 	} seed_t;
 
 
-#if defined(__STDC__)
-#define PROTO(s) s
-#else
-#define PROTO(s) ()
-#endif
+/* PROTO macro removed; use standard C prototypes directly */
 
 /* bm_utils.c */
-char	*env_config PROTO((char *var, char *dflt));
-long	yes_no PROTO((char *prompt));
-void     a_rnd PROTO((int min, int max, int column, char *dest));
-int     tx_rnd PROTO((long min, long max, long column, char *tgt));
-long	julian PROTO((long date));
-long	unjulian PROTO((long date));
-FILE	*tbl_open PROTO((int tbl, char *mode));
-long	dssncasecmp PROTO((char *s1, char *s2, int n));
-long	dsscasecmp PROTO((char *s1, char *s2));
-int		pick_str PROTO((distribution * s, int c, char *target));
-void	agg_str PROTO((distribution *set, long count, long col, char *dest));
-void	read_dist PROTO((char *path, char *name, distribution * target));
-void	embed_str PROTO((distribution *d, int min, int max, int stream, char *dest));
+const char* env_config(const char *var, const char *dflt);
+long	yes_no(char *prompt);
+void    a_rnd(int min, int max, int column, char *dest);
+int     tx_rnd(long min, long max, long column, char *tgt);
+long	julian(long date);
+long	unjulian(long date);
+FILE	*tbl_open(int tbl, char *mode);
+long	dssncasecmp(char *s1, char *s2, int n);
+long	dsscasecmp(char *s1, char *s2);
+int	pick_str(distribution * s, int c, char *target);
+void	agg_str(distribution *set, long count, long col, char *dest);
+void	read_dist(char *path, char *name, distribution * target);
+void	embed_str(distribution *d, int min, int max, int stream, char *dest);
 #ifndef STDLIB_HAS_GETOPT
-int		getopt PROTO((int arg_cnt, char **arg_vect, char *oprions));
+int	getopt(int arg_cnt, char **arg_vect, char *oprions);
 #endif /* STDLIB_HAS_GETOPT */
-DSS_HUGE	set_state PROTO((int t, long scale, long procs, long step, DSS_HUGE *e));
+DSS_HUGE	set_state(int t, long scale, long procs, long step, DSS_HUGE *e);
 
 /* rnd.c */
-DSS_HUGE	NextRand PROTO((DSS_HUGE nSeed));
-DSS_HUGE	UnifInt PROTO((DSS_HUGE nLow, DSS_HUGE nHigh, long nStream));
+DSS_HUGE	NextRand(DSS_HUGE nSeed);
+DSS_HUGE	UnifInt(DSS_HUGE nLow, DSS_HUGE nHigh, long nStream);
 void	dss_random(DSS_HUGE *tgt, DSS_HUGE min, DSS_HUGE max, long seed);
 void	row_start(int t);
 void	row_stop(int t);
@@ -232,7 +228,7 @@ void	dump_seeds(int t);
 #define MAX_SENT_LEN	256 /* max length of populated sentence */
 #define RNG_PER_SENT	27	/* max number of RNG calls per sentence */
 
-void		dbg_text PROTO((char * t, int min, int max, int s));
+void		dbg_text(char * t, int min, int max, int s);
 
 #ifdef DECLARER
 #define EXTERN

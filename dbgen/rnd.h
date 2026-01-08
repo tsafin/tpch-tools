@@ -35,9 +35,9 @@
  * provided by Frank Stephens of Unisys
  */
 
-/* function protypes */
-DSS_HUGE            NextRand    PROTO((DSS_HUGE));
-DSS_HUGE            UnifInt     PROTO((DSS_HUGE, DSS_HUGE, long));
+/* function prototypes */
+DSS_HUGE            NextRand(DSS_HUGE);
+DSS_HUGE            UnifInt(DSS_HUGE, DSS_HUGE, long);
 
 static long     nA = 16807;     /* the multiplier */
 static long     nM = 2147483647;/* the modulus == 2^31 - 1 */

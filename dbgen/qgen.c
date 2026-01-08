@@ -48,12 +48,12 @@
 /*
  * Function Protoypes
  */
-void varsub PROTO((int qnum, int vnum, int flags));
-int strip_comments PROTO((char *line));
-void usage PROTO((void));
-int process_options PROTO((int cnt, char **args));
-int setup PROTO((void));
-void qsub PROTO((char *qtag, int flags));
+void varsub(int qnum, int vnum, int flags);
+int strip_comments(char *line);
+void usage(void);
+int process_options(int cnt, char **args);
+int setup(void);
+void qsub(char *qtag, int flags);
 
 
 

@@ -108,15 +108,7 @@
 static char alpha_num[65] =
 "0123456789abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ,";
 
-#if defined(__STDC__) || defined(__cplusplus)
-#define PROTO(s) s
-#else
-#define PROTO(s) ()
-#endif
-
-#ifndef WIN32
-char     *getenv PROTO((const char *name));
-#endif
+/* PROTO macro removed; using standard prototypes */
 void usage();
 long *permute_dist(distribution *d, long stream);
 extern seed_t Seed[];
@@ -125,8 +117,8 @@ extern seed_t Seed[];
  * env_config: look for a environmental variable setting and return its
  * value; otherwise return the default supplied
  */
-char     *
-env_config(char *var, char *dflt)
+const char *
+env_config(const char *var, const char *dflt)
 {
    static char *evar;
 
@@ -204,12 +196,12 @@ e_str(distribution *d, int min, int max, int stream, char *dest)
 {
     char strtmp[MAXAGG_LEN + 1];
     DSS_HUGE loc;
-    int len;
+    size_t len;
 
     a_rnd(min, max, stream, dest);
     pick_str(d, stream, strtmp);
-    len = (int)strlen(strtmp);
-    RANDOM(loc, 0, ((int)strlen(dest) - 1 - len), stream);
+    len = strlen(strtmp);
+    RANDOM(loc, 0, (strlen(dest) - 1 - len), stream);
     strncpy(dest + loc, strtmp, len);
 
     return;

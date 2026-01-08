@@ -90,7 +90,6 @@
 #include "dss.h"
 #include "rnd.h" 
 
-char *env_config PROTO((char *tag, char *dflt));
 void NthElement(DSS_HUGE, DSS_HUGE *);
 
 void

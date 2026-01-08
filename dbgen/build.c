@@ -63,7 +63,7 @@ extern adhoc_t  adhocs[];
     }
 #define V_STR(avg, sd, tgt)  a_rnd((int)(avg * V_STR_LOW),(int)(avg * V_STR_HGH), sd, tgt)
 #define TEXT(avg, sd, tgt)  dbg_text(tgt, (int)(avg * V_STR_LOW),(int)(avg * V_STR_HGH), sd)
-static void gen_phone PROTO((DSS_HUGE ind, char *target, long seed));
+static void gen_phone(DSS_HUGE ind, char *target, long seed);
 
 DSS_HUGE
 rpb_routine(DSS_HUGE p)
@@ -159,7 +159,7 @@ mk_order(DSS_HUGE index, order_t * o, long upd_num)
 	DSS_HUGE        supp_num;
 	static char   **asc_date = NULL;
 	char            tmp_str[2];
-	char          **mk_ascdate PROTO((void));
+	char          **mk_ascdate(void);
 	int             delta = 1;
 	static int      bInit = 0;
 	static char     szFormat[100];

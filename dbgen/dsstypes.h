@@ -52,9 +52,9 @@ typedef struct
     int             clen;
 }               customer_t;
 /* customers.c */
-long mk_cust   PROTO((DSS_HUGE n_cust, customer_t * c));
-int pr_cust    PROTO((customer_t * c, int mode));
-int ld_cust    PROTO((customer_t * c, int mode));
+long mk_cust(DSS_HUGE n_cust, customer_t * c);
+int pr_cust(customer_t * c, int mode);
+int ld_cust(customer_t * c, int mode);
 
 typedef struct
 {
@@ -94,10 +94,10 @@ typedef struct
 }               order_t;
 
 /* order.c */
-long	mk_order	PROTO((DSS_HUGE index, order_t * o, long upd_num));
-int		pr_order	PROTO((order_t * o, int mode));
-int		ld_order	PROTO((order_t * o, int mode));
-void	mk_sparse	PROTO((DSS_HUGE index, DSS_HUGE *ok, long seq));
+long mk_order(DSS_HUGE index, order_t * o, long upd_num);
+int pr_order(order_t * o, int mode);
+int ld_order(order_t * o, int mode);
+void mk_sparse(DSS_HUGE index, DSS_HUGE *ok, long seq);
 
 typedef struct
 {
@@ -127,9 +127,9 @@ typedef struct
 }               part_t;
 
 /* parts.c */
-long mk_part   PROTO((DSS_HUGE index, part_t * p));
-int pr_part    PROTO((part_t * part, int mode));
-int ld_part    PROTO((part_t * part, int mode));
+long mk_part(DSS_HUGE index, part_t * p);
+int pr_part(part_t * part, int mode);
+int ld_part(part_t * part, int mode);
 
 typedef struct
 {
@@ -144,9 +144,9 @@ typedef struct
     int             clen;
 }               supplier_t;
 /* supplier.c */
-long mk_supp   PROTO((DSS_HUGE index, supplier_t * s));
-int pr_supp    PROTO((supplier_t * supp, int mode));
-int ld_supp    PROTO((supplier_t * supp, int mode));
+long mk_supp(DSS_HUGE index, supplier_t * s);
+int pr_supp(supplier_t * supp, int mode);
+int ld_supp(supplier_t * supp, int mode);
 
 typedef struct
 {
@@ -159,7 +159,7 @@ typedef struct
 } dss_time_t;               
 
 /* time.c */
-long mk_time   PROTO((DSS_HUGE h, dss_time_t * t));
+long mk_time(DSS_HUGE h, dss_time_t * t);
 
 /*
  * this assumes that N_CMNT_LEN >= R_CMNT_LEN 
@@ -174,10 +174,10 @@ typedef struct
 }               code_t;
 
 /* code table */
-int mk_nation   PROTO((DSS_HUGE i, code_t * c));
-int pr_nation    PROTO((code_t * c, int mode));
-int ld_nation    PROTO((code_t * c, int mode));
-int mk_region   PROTO((DSS_HUGE i, code_t * c));
-int pr_region    PROTO((code_t * c, int mode));
-int ld_region    PROTO((code_t * c, int mode));
+int mk_nation(DSS_HUGE i, code_t * c);
+int pr_nation(code_t * c, int mode);
+int ld_nation(code_t * c, int mode);
+int mk_region(DSS_HUGE i, code_t * c);
+int pr_region(code_t * c, int mode);
+int ld_region(code_t * c, int mode);
 

@@ -50,8 +50,8 @@
 /*
  * Function Prototypes
  */
-FILE *print_prep PROTO((int table, int update));
-int pr_drange PROTO((int tbl, DSS_HUGE min, DSS_HUGE cnt, long num));
+FILE *print_prep(int table, int update);
+int pr_drange(int tbl, DSS_HUGE min, DSS_HUGE cnt, long num);
 
 FILE *
 print_prep(int table, int update)

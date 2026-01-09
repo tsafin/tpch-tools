@@ -25,13 +25,13 @@ void load_dists(void)
     char *dpath;
 
     /* Get distribution file path from environment or use current directory */
-    dpath = getenv("DSS_PATH");
+    dpath = getenv(DIST_TAG);
     if (dpath == NULL || *dpath == '\0') {
-        dpath = ".";
+        dpath = DIST_DFLT;
     }
 
     if (verbose > 0) {
-        fprintf(stderr, "Loading distributions from %s/dists.dss\n", dpath);
+        fprintf(stderr, "Loading distributions from %s\n", dpath);
     }
 
     /* Load all required distributions */

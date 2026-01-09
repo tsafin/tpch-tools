@@ -34,17 +34,18 @@ void load_dists(void)
         fprintf(stderr, "Loading distributions from %s\n", dpath);
     }
 
-    /* Load all required distributions */
+    /* Load all required distributions for data generation */
+    read_dist(dpath, "p_cntr", &p_cntr_set);
+    read_dist(dpath, "colors", &colors);
+    read_dist(dpath, "p_types", &p_types_set);
     read_dist(dpath, "nations", &nations);
     read_dist(dpath, "regions", &regions);
-    read_dist(dpath, "o_priority_set", &o_priority_set);
-    read_dist(dpath, "l_instruct_set", &l_instruct_set);
-    read_dist(dpath, "l_smode_set", &l_smode_set);
-    read_dist(dpath, "l_category_set", &l_category_set);
-    read_dist(dpath, "l_rflag_set", &l_rflag_set);
-    read_dist(dpath, "c_mseg_set", &c_mseg_set);
-    read_dist(dpath, "p_types_set", &p_types_set);
-    read_dist(dpath, "p_cntr_set", &p_cntr_set);
+    read_dist(dpath, "o_oprio", &o_priority_set);
+    read_dist(dpath, "instruct", &l_instruct_set);
+    read_dist(dpath, "smode", &l_smode_set);
+    read_dist(dpath, "category", &l_category_set);
+    read_dist(dpath, "rflag", &l_rflag_set);
+    read_dist(dpath, "msegmnt", &c_mseg_set);
 
     if (verbose > 0) {
         fprintf(stderr, "Distributions loaded successfully\n");

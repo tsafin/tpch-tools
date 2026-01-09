@@ -43,13 +43,13 @@ typedef struct
     DSS_HUGE            custkey;
     char            name[C_NAME_LEN + 3];
     char            address[C_ADDR_MAX + 1];
-    int             alen;
+    size_t          alen;
     DSS_HUGE            nation_code;
     char            phone[PHONE_LEN + 1];
     DSS_HUGE            acctbal;
     char            mktsegment[MAXAGG_LEN + 1];
     char            comment[C_CMNT_MAX + 1];
-    int             clen;
+    size_t          clen;
 }               customer_t;
 /* customers.c */
 long mk_cust(DSS_HUGE n_cust, customer_t * c);
@@ -74,7 +74,7 @@ typedef struct
     char           shipinstruct[MAXAGG_LEN + 1];
     char           shipmode[MAXAGG_LEN + 1];
     char           comment[L_CMNT_MAX + 1];
-    int            clen;
+    size_t         clen;
 }               line_t;
 
 typedef struct
@@ -89,7 +89,7 @@ typedef struct
     long            spriority;
     DSS_HUGE            lines;
     char            comment[O_CMNT_MAX + 1];
-    int            clen;
+    size_t         clen;
     line_t          l[O_LCNT_MAX];
 }               order_t;
 
@@ -106,23 +106,23 @@ typedef struct
     DSS_HUGE            qty;
     DSS_HUGE            scost;
     char           comment[PS_CMNT_MAX + 1];
-    int            clen;
+    size_t         clen;
 }               partsupp_t;
 
 typedef struct
 {
     DSS_HUGE           partkey;
     char           name[P_NAME_LEN + 1];
-    int            nlen;
+    size_t         nlen;
     char           mfgr[P_MFG_LEN + 1];
     char           brand[P_BRND_LEN + 1];
     char           type[P_TYPE_LEN + 1];
-    int            tlen;
+    size_t         tlen;
     DSS_HUGE           size;
     char           container[P_CNTR_LEN + 1];
     DSS_HUGE           retailprice;
     char           comment[P_CMNT_MAX + 1];
-    int            clen;
+    size_t         clen;
     partsupp_t     s[SUPP_PER_PART];
 }               part_t;
 
@@ -136,12 +136,12 @@ typedef struct
     DSS_HUGE            suppkey;
     char            name[S_NAME_LEN + 1];
     char            address[S_ADDR_MAX + 1];
-    int             alen;
+    size_t          alen;
     DSS_HUGE            nation_code;
     char            phone[PHONE_LEN + 1];
     DSS_HUGE            acctbal;
     char            comment[S_CMNT_MAX + 1];
-    int             clen;
+    size_t          clen;
 }               supplier_t;
 /* supplier.c */
 long mk_supp(DSS_HUGE index, supplier_t * s);
@@ -170,7 +170,7 @@ typedef struct
     char            *text;
     long            join;
     char            comment[N_CMNT_MAX + 1];
-    int             clen;
+    size_t          clen;
 }               code_t;
 
 /* code table */

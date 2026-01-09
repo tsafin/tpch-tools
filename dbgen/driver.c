@@ -221,10 +221,10 @@ child_table:
 				return (-1);;
 			if ((new_name = strchr (line, '\n')) != NULL)
 				*new_name = '\0';
-			if ((int)strlen (line) == 0)
+			if (strlen (line) == 0)
 				return (0);
 		}
-		new_name = (char *) malloc ((int)strlen (line) + 1);
+		new_name = (char *) malloc (strlen (line) + 1);
 		MALLOC_CHECK (new_name);
 		strcpy (new_name, line);
 		tdefs[i].name = new_name;
@@ -455,7 +455,7 @@ process_options (int count, char **vector)
 	switch (option)
 	{
 		case 'b':				/* load distributions from named file */
-			d_path = (char *)malloc((int)strlen(optarg) + 1);
+			d_path = (char *)malloc(strlen(optarg) + 1);
 			MALLOC_CHECK(d_path);
 			strcpy(d_path, optarg);
 			if ((pF = fopen(d_path, "r")) == NULL)
@@ -698,7 +698,7 @@ main (int ac, char **av)
 #if (defined(WIN32)&&!defined(_POSIX_))
 	for (i = 0; i < ac; i++)
 	{
-		spawn_args[i] = malloc (((int)strlen (av[i]) + 1) * sizeof (char));
+		spawn_args[i] = malloc ((strlen (av[i]) + 1) * sizeof (char));
 		MALLOC_CHECK (spawn_args[i]);
 		strcpy (spawn_args[i], av[i]);
 	}

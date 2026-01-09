@@ -132,7 +132,7 @@ txt_vp(char *dest, int sd)
 			break;
 		}	/* end of POS switch statement */
 		i = pick_str(src, sd, dest);
-		i = (int)strlen(DIST_MEMBER(src, i));
+		i = strlen(DIST_MEMBER(src, i));
 		dest += i;
 		res += i;
 		if (*(++cptr))	/* miscelaneous fillagree, like punctuation */
@@ -194,7 +194,7 @@ txt_np(char *dest, int sd)
 			break;
 		}	/* end of POS switch statement */
 		i = pick_str(src, sd, dest);
-		i = (int)strlen(DIST_MEMBER(src, i));
+		i = strlen(DIST_MEMBER(src, i));
 		dest += i;
 		res += i;
 		if (*(++cptr))	/* miscelaneous fillagree, like punctuation */
@@ -252,14 +252,14 @@ next_token:	/* I hate goto's, but can't seem to have parent and child use strtok
 			break;
 		case 'P':
 			i = pick_str(&prepositions, sd, dest);
-			len = (int)strlen(DIST_MEMBER(&prepositions, i));
+			len = strlen(DIST_MEMBER(&prepositions, i));
 			strcpy((dest + len), " the ");
 			len += 5;
 			len += txt_np(dest + len, sd);
 			break;
 		case 'T':
 			i = pick_str(&terminators, sd, --dest); /*terminators should abut previous word */
-			len = (int)strlen(DIST_MEMBER(&terminators, i));
+			len = strlen(DIST_MEMBER(&terminators, i));
 			break;
 		}	/* end of POS switch statement */
 		dest += len;

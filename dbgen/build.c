@@ -112,14 +112,14 @@ mk_cust(DSS_HUGE n_cust, customer_t * c)
 	c->custkey = n_cust;
 	sprintf(c->name, szFormat, C_NAME_TAG, n_cust);
 	V_STR(C_ADDR_LEN, C_ADDR_SD, c->address);
-	c->alen = (int)strlen(c->address);
+	c->alen = strlen(c->address);
 	RANDOM(i, 0, (nations.count - 1), C_NTRG_SD);
 	c->nation_code = i;
 	gen_phone(i, c->phone, (long) C_PHNE_SD);
 	RANDOM(c->acctbal, C_ABAL_MIN, C_ABAL_MAX, C_ABAL_SD);
 	pick_str(&c_mseg_set, C_MSEG_SD, c->mktsegment);
 	TEXT(C_CMNT_LEN, C_CMNT_SD, c->comment);
-	c->clen = (int)strlen(c->comment);
+	c->clen = strlen(c->comment);
 
 	return (0);
 }
@@ -191,7 +191,7 @@ mk_order(DSS_HUGE index, order_t * o, long upd_num)
 	RANDOM(clk_num, 1, MAX((scale * O_CLRK_SCL), O_CLRK_SCL), O_CLRK_SD);
 	sprintf(o->clerk, szFormat, O_CLRK_TAG, clk_num);
 	TEXT(O_CMNT_LEN, O_CMNT_SD, o->comment);
-	o->clen = (int)strlen(o->comment);
+	o->clen = strlen(o->comment);
 #ifdef DEBUG
 	if (o->clen > O_CMNT_MAX)
 		fprintf(stderr, "comment error: O%d\n", index);
@@ -213,7 +213,7 @@ mk_order(DSS_HUGE index, order_t * o, long upd_num)
 		pick_str(&l_instruct_set, L_SHIP_SD, o->l[lcnt].shipinstruct);
 		pick_str(&l_smode_set, L_SMODE_SD, o->l[lcnt].shipmode);
 		TEXT(L_CMNT_LEN, L_CMNT_SD, o->l[lcnt].comment);
-		o->l[lcnt].clen = (int)strlen(o->l[lcnt].comment);
+		o->l[lcnt].clen = strlen(o->l[lcnt].comment);
 		if (scale >= 30000)
 			RANDOM64(o->l[lcnt].partkey, L_PKEY_MIN, L_PKEY_MAX, L_PKEY_SD);
 		else
@@ -290,12 +290,12 @@ mk_part(DSS_HUGE index, part_t * p)
 	RANDOM(brnd, P_BRND_MIN, P_BRND_MAX, P_BRND_SD);
 	sprintf(p->brand, szBrandFormat, P_BRND_TAG, (temp * 10 + brnd));
 	p->tlen = pick_str(&p_types_set, P_TYPE_SD, p->type);
-	p->tlen = (int)strlen(p_types_set.list[p->tlen].text);
+	p->tlen = strlen(p_types_set.list[p->tlen].text);
 	RANDOM(p->size, P_SIZE_MIN, P_SIZE_MAX, P_SIZE_SD);
 	pick_str(&p_cntr_set, P_CNTR_SD, p->container);
 	p->retailprice = rpb_routine(index);
 	TEXT(P_CMNT_LEN, P_CMNT_SD, p->comment);
-	p->clen = (int)strlen(p->comment);
+	p->clen = strlen(p->comment);
 
 	for (snum = 0; snum < SUPP_PER_PART; snum++)
 	{
@@ -304,7 +304,7 @@ mk_part(DSS_HUGE index, part_t * p)
 		RANDOM(p->s[snum].qty, PS_QTY_MIN, PS_QTY_MAX, PS_QTY_SD);
 		RANDOM(p->s[snum].scost, PS_SCST_MIN, PS_SCST_MAX, PS_SCST_SD);
 		TEXT(PS_CMNT_LEN, PS_CMNT_SD, p->s[snum].comment);
-		p->s[snum].clen = (int)strlen(p->s[snum].comment);
+		p->s[snum].clen = strlen(p->s[snum].comment);
 	}
 	return (0);
 }
@@ -324,14 +324,14 @@ mk_supp(DSS_HUGE index, supplier_t * s)
 	s->suppkey = index;
 	sprintf(s->name, szFormat, S_NAME_TAG, index);
 	V_STR(S_ADDR_LEN, S_ADDR_SD, s->address);
-	s->alen = (int)strlen(s->address);
+	s->alen = strlen(s->address);
 	RANDOM(i, 0, nations.count - 1, S_NTRG_SD);
 	s->nation_code = i;
 	gen_phone(i, s->phone, S_PHNE_SD);
 	RANDOM(s->acctbal, S_ABAL_MIN, S_ABAL_MAX, S_ABAL_SD);
 
 	TEXT(S_CMNT_LEN, S_CMNT_SD, s->comment);
-	s->clen = (int)strlen(s->comment);
+	s->clen = strlen(s->comment);
 	/*
 	 * these calls should really move inside the if stmt below, but this
 	 * will simplify seedless parallel load
@@ -433,7 +433,7 @@ mk_nation(DSS_HUGE index, code_t * c)
 	c->text = nations.list[index - 1].text;
 	c->join = nations.list[index - 1].weight;
 	TEXT(N_CMNT_LEN, N_CMNT_SD, c->comment);
-	c->clen = (int)strlen(c->comment);
+	c->clen = strlen(c->comment);
 	return (0);
 }
 
@@ -445,6 +445,6 @@ mk_region(DSS_HUGE index, code_t * c)
 	c->text = regions.list[index - 1].text;
 	c->join = 0;		/* for completeness */
 	TEXT(R_CMNT_LEN, R_CMNT_SD, c->comment);
-	c->clen = (int)strlen(c->comment);
+	c->clen = strlen(c->comment);
 	return (0);
 }

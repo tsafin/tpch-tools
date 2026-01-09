@@ -355,7 +355,7 @@ long      weight,
             continue;
             }
         target->list[count].text =
-            (char *) malloc((size_t)((int)strlen(token) + 1));
+            (char *) malloc(strlen(token) + 1);
         MALLOC_CHECK(target->list[count].text);
         strcpy(target->list[count].text, token);
         target->max += weight;
@@ -443,7 +443,7 @@ agg_str(distribution *set, long count, long col, char *dest)
 		strcat(dest, DIST_MEMBER(set,DIST_PERMUTE(d, i)));
 		strcat(dest, " ");
 		}
-	*(dest + (int)strlen(dest) - 1) = '\0';
+	*(dest + strlen(dest) - 1) = '\0';
 
     return;
 }

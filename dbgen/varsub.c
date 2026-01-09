@@ -155,7 +155,7 @@ varsub(int qnum, int vnum, int flags)
 				sprintf(param[1], HUGE_FORMAT,
 					UnifInt((DSS_HUGE)P_SIZE_MIN, (DSS_HUGE)P_SIZE_MAX, qnum));
 				pick_str(&p_types_set, qnum, param[3]);
-				ptr = param[3] + (int)strlen(param[3]);
+				ptr = param[3] + strlen(param[3]);
 				while (*(ptr - 1) != ' ') ptr--;
 				strcpy(param[2], ptr);
 				pick_str(&regions, qnum, param[3]);
@@ -248,7 +248,7 @@ varsub(int qnum, int vnum, int flags)
 				tmp2 = UnifInt((DSS_HUGE)1, (DSS_HUGE)5, qnum);
 				sprintf(param[1], formats[16], tmp1, tmp2);
 				pick_str(&p_types_set, qnum, param[2]);
-				ptr = param[2] + (int)strlen(param[2]);
+				ptr = param[2] + strlen(param[2]);
 				while (*(--ptr) != ' ');
 				*ptr = '\0';
 				lptr = &sizes[0];

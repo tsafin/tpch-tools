@@ -285,14 +285,18 @@ mk_part(DSS_HUGE index, part_t * p)
 	}
 	p->partkey = index;
 	agg_str(&colors, (long) P_NAME_SCL, (long) P_NAME_SD, p->name);
+	p->nlen = strlen(p->name);
 	RANDOM(temp, P_MFG_MIN, P_MFG_MAX, P_MFG_SD);
 	sprintf(p->mfgr, szFormat, P_MFG_TAG, temp);
+	p->mlen = strlen(p->mfgr);
 	RANDOM(brnd, P_BRND_MIN, P_BRND_MAX, P_BRND_SD);
 	sprintf(p->brand, szBrandFormat, P_BRND_TAG, (temp * 10 + brnd));
+	p->blen = strlen(p->brand);
 	p->tlen = pick_str(&p_types_set, P_TYPE_SD, p->type);
 	p->tlen = strlen(p_types_set.list[p->tlen].text);
 	RANDOM(p->size, P_SIZE_MIN, P_SIZE_MAX, P_SIZE_SD);
 	pick_str(&p_cntr_set, P_CNTR_SD, p->container);
+	p->cnlen = strlen(p->container);
 	p->retailprice = rpb_routine(index);
 	TEXT(P_CMNT_LEN, P_CMNT_SD, p->comment);
 	p->clen = strlen(p->comment);

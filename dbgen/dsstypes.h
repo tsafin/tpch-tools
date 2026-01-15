@@ -115,11 +115,14 @@ typedef struct
     char           name[P_NAME_LEN + 1];
     size_t         nlen;
     char           mfgr[P_MFG_LEN + 1];
+    size_t         mlen;
     char           brand[P_BRND_LEN + 1];
+    size_t         blen;
     char           type[P_TYPE_LEN + 1];
     size_t         tlen;
     DSS_HUGE           size;
     char           container[P_CNTR_LEN + 1];
+    size_t         cnlen;
     DSS_HUGE           retailprice;
     char           comment[P_CMNT_MAX + 1];
     size_t         clen;

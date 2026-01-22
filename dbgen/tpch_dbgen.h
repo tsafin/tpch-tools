@@ -45,6 +45,9 @@ extern "C" {
 /* Additional utility functions from tpch_init.c */
 void load_dists(void);
 void dbgen_reset_seeds(void);
+/* Save/restore RNG seed snapshot for embedded usage */
+void dbgen_capture_seed_snapshot(void);
+void dbgen_restore_seed_snapshot(void);
 
 #ifdef __cplusplus
 }  /* extern "C" */
